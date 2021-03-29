@@ -1,0 +1,17 @@
+<div class="example-container">
+    <div class="form-container">
+        <form [formGroup]="loginForm" (submit)="submit()">
+            <mat-form-field class="form-field" appearance="outline">
+                <mat-label> Usuario
+                </mat-label>
+                <input matInput formControlName="usuario" required>
+            </mat-form-field>
+            <mat-form-field class="form-field" appearance="outline">
+                <mat-label> Password
+                </mat-label>
+                <input matInput formControlName="contrasena" type="password" required>
+            </mat-form-field>
+            <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid">Log In</button>
+        </form>
+    </div>
+</div>

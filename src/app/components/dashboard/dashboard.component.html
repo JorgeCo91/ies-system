@@ -1,0 +1,31 @@
+<div class="example-container">
+    <div class="form-container">
+        <h1>Formulario</h1>
+        <form [formGroup]="dashboardForm" (submit)="enviar()">
+            <mat-form-field appearance="fill">
+                <mat-label>Nombre</mat-label>
+                <input matInput formControlName="nombre" [class.is-invalid]="nombreNoValido" required>
+                <small *ngIf="nombreNoValido" class="text-danger"> El campo nombre es obligatorio</small>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Correo</mat-label>
+                <input matInput formControlName="correo" [class.is-invalid]="correoNoValido" required>
+                <small *ngIf="correoNoValido" class="text-danger"> El campo correo es obligatorio ó correo invalido</small>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Selecciona una fecha</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="fechaReserva" [min]="minDate" [max]="maxDate" [class.is-invalid]="fechaReservaNoValido" required>
+                <small *ngIf="fechaReservaNoValido" class="text-danger"> El campo fecha de reserva es obligatorio</small>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Selecciona un pais</mat-label>
+                <mat-select formControlName="pais">
+                    <mat-option *ngFor="let pais of paisesData" value="{{ pais.country }}"> {{ pais.country }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <button mat-raised-button color="primary" type="submit" [disabled]="dashboardForm.invalid">Enviar</button>
+        </form>
+    </div>
+</div>
